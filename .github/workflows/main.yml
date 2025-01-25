@@ -4,10 +4,18 @@ on:
   - pull_request
 
 jobs:
-  build:
+  isort:
+    name: "Run isort with Guillo"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: isort/isort-action@v1
         with:
           requirements-files: "requirements.txt requirements-test.txt"
+
+  myprecommit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+      - uses: pre-commit/action@v3.0.1
